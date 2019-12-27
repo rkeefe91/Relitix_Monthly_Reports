@@ -1,0 +1,1265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily">
+  <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="Dev">
+      <DataSourceReference>Dev</DataSourceReference>
+      <rd:SecurityType>DataBase</rd:SecurityType>
+      <rd:DataSourceID>ca8ef0f4-7bab-417b-b8b1-e230064f6dfc</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Tab1Params">
+      <Query>
+        <DataSourceName>Dev</DataSourceName>
+        <CommandText>select
+	minvol.Company,minvol.SourceSystemID,ss.System_Name As SourceSystemName,
+--Tab1	
+minvol.MinVol As Tab1MinVol,maxvol.MaxVol As Tab1MaxVol,minlicdate.MinLicDate As Tab1MinLicDate,maxlicdate.MaxLicDate As Tab1MaxLicDate,mindollchange.MinDollChng As Tab1MinDollChng,maxdollchange.MaxDollChng As Tab1MaxDollChng,minpctchng.MinPctChng As Tab1MinPctChng,maxpctchng.MaxPctChng As Tab1MaxPctChng,
+roc.RemoveOwnCoFlag As Tab1RemoveOwnCoFlag,ibn.IncludeBrandNewFlag As Tab1IncludeBrandNewFlag,md.MaxDistance As Tab1MaxDistance,minasp.MinAvgSalePrice As Tab1MinAvgSalePrice,maxasp.MaxAvgSalePrice As Tab1MaxAvgSalePrice,minsides.MinSides As Tab1MinSides,maxsides.MaxSides As Tab1MaxSides,tn.TabName As Tab1TabName,fr.Franchise As Tab1Franchise,minlsp.MinListSidePct As Tab1MinListSidePct,maxlsp.MaxListSidePct As Tab1MaxListSidePct,
+--Tab2
+Tab2minvol.MinVol As Tab2MinVol,Tab2maxvol.MaxVol As Tab2MaxVol,Tab2minlicdate.MinLicDate As Tab2MinLicDate,Tab2maxlicdate.MaxLicDate As Tab2MaxLicDate,Tab2mindollchange.MinDollChng As Tab2MinDollChng,Tab2maxdollchange.MaxDollChng As Tab2MaxDollChng,Tab2minpctchng.MinPctChng As Tab2MinPctChng,Tab2maxpctchng.MaxPctChng As Tab2MaxPctChng,
+Tab2roc.RemoveOwnCoFlag As Tab2RemoveOwnCoFlag,Tab2ibn.IncludeBrandNewFlag As Tab2IncludeBrandNewFlag,Tab2md.MaxDistance As Tab2MaxDistance,Tab2minasp.MinAvgSalePrice As Tab2MinAvgSalePrice,Tab2maxasp.MaxAvgSalePrice As Tab2MaxAvgSalePrice,Tab2minsides.MinSides As Tab2MinSides,Tab2maxsides.MaxSides As Tab2MaxSides,Tab2tn.TabName As Tab2TabName,Tab2fr.Franchise As Tab2Franchise,Tab2minlsp.MinListSidePct As Tab2MinListSidePct,Tab2maxlsp.MaxListSidePct As Tab2MaxListSidePct,
+--Alt
+Altminvol.MinVol As AltMinVol,Altmaxvol.MaxVol As AltMaxVol,Altminlicdate.MinLicDate As AltMinLicDate,Altmaxlicdate.MaxLicDate As AltMaxLicDate,Altmindollchange.MinDollChng As AltMinDollChng,Altmaxdollchange.MaxDollChng As AltMaxDollChng,Altminpctchng.MinPctChng As AltMinPctChng,Altmaxpctchng.MaxPctChng As AltMaxPctChng,
+Altroc.RemoveOwnCoFlag As AltRemoveOwnCoFlag,Altibn.IncludeBrandNewFlag As AltIncludeBrandNewFlag,Altmd.MaxDistance As AltMaxDistance,Altminasp.MinAvgSalePrice As AltMinAvgSalePrice,Altmaxasp.MaxAvgSalePrice As AltMaxAvgSalePrice,Altminsides.MinSides As AltMinSides,Altmaxsides.MaxSides As AltMaxSides,Alttn.TabName As AltTabName,Altfr.Franchise As AltFranchise,Altminlsp.MinListSidePct As AltMinListSidePct,Altmaxlsp.MaxListSidePct As AltMaxListSidePct,
+--Alt1
+Alt1minvol.MinVol As Alt1MinVol,Alt1maxvol.MaxVol As Alt1MaxVol,Alt1minlicdate.MinLicDate As Alt1MinLicDate,Alt1maxlicdate.MaxLicDate As Alt1MaxLicDate,Alt1mindollchange.MinDollChng As Alt1MinDollChng,Alt1maxdollchange.MaxDollChng As Alt1MaxDollChng,Alt1minpctchng.MinPctChng As Alt1MinPctChng,Alt1maxpctchng.MaxPctChng As Alt1MaxPctChng,
+Alt1roc.RemoveOwnCoFlag As Alt1RemoveOwnCoFlag,Alt1ibn.IncludeBrandNewFlag As Alt1IncludeBrandNewFlag,Alt1md.MaxDistance As Alt1MaxDistance,Alt1minasp.MinAvgSalePrice As Alt1MinAvgSalePrice,Alt1maxasp.MaxAvgSalePrice As Alt1MaxAvgSalePrice,Alt1minsides.MinSides As Alt1MinSides,Alt1maxsides.MaxSides As Alt1MaxSides,Alt1tn.TabName As Alt1TabName,Alt1fr.Franchise As Alt1Franchise,Alt1minlsp.MinListSidePct As Alt1MinListSidePct,Alt1maxlsp.MaxListSidePct As Alt1MaxListSidePct
+from
+(
+select Company,SourceSystemID,max(NumericValue) As MinVol from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='min_vol'
+group by Company,SourceSystemID
+) minvol
+join relitix.dbo.Source_System ss on minvol.SourceSystemID=ss.System_ID
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MaxVol from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='max_vol'
+group by Company,SourceSystemID
+) maxvol
+on minvol.Company=maxvol.Company and minvol.SourceSystemID=maxvol.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MinLicDate from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='min_lic_date'
+group by Company,SourceSystemID
+) minlicdate
+on minvol.Company=minlicdate.Company and minvol.SourceSystemID=minlicdate.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MaxLicDate from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='max_lic_date'
+group by Company,SourceSystemID
+) maxlicdate
+on minvol.Company=maxlicdate.Company and minvol.SourceSystemID=maxlicdate.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MinDollChng from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='min_doll_change'
+group by Company,SourceSystemID
+) mindollchange
+on minvol.Company=mindollchange.Company and minvol.SourceSystemID=mindollchange.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MaxDollChng from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='max_doll_change'
+group by Company,SourceSystemID
+) maxdollchange
+on minvol.Company=maxdollchange.Company and minvol.SourceSystemID=maxdollchange.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MinPctChng from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='min_pct_chng'
+group by Company,SourceSystemID
+) minpctchng
+on minvol.Company=minpctchng.Company and minvol.SourceSystemID=minpctchng.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MaxPctChng from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='max_pct_chng'
+group by Company,SourceSystemID
+) maxpctchng
+on minvol.Company=maxpctchng.Company and minvol.SourceSystemID=maxpctchng.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,BitValue As RemoveOwnCoFlag from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='remove_own_company'
+) roc
+on minvol.Company=roc.Company and minvol.SourceSystemID=roc.SourceSystemID
+left join
+(
+select Company,SourceSystemID,BitValue As IncludeBrandNewFlag from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='include_brand_new'
+) ibn
+on minvol.Company=ibn.Company and minvol.SourceSystemID=ibn.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MaxDistance from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='max_distance'
+group by Company,SourceSystemID
+) md
+on minvol.Company=md.Company and minvol.SourceSystemID=md.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MinAvgSalePrice from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='min_avg_sale_price'
+group by Company,SourceSystemID
+) minasp
+on minvol.Company=minasp.Company and minvol.SourceSystemID=minasp.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MaxAvgSalePrice from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='max_avg_sale_price'
+group by Company,SourceSystemID
+) maxasp
+on minvol.Company=maxasp.Company and minvol.SourceSystemID=maxasp.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MinSides from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='min_sides'
+group by Company,SourceSystemID
+) minsides
+on minvol.Company=minsides.Company and minvol.SourceSystemID=minsides.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MaxSides from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='max_sides'
+group by Company,SourceSystemID
+) maxsides
+on minvol.Company=maxsides.Company and minvol.SourceSystemID=maxsides.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(TabName) As TabName from reportparameters where TabTypeID=1 and IsActive=1 group by Company,SourceSystemID
+) tn
+on minvol.Company=tn.Company and minvol.SourceSystemID=tn.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(TextValue) As Franchise from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='franchise'
+group by Company,SourceSystemID
+) fr
+on minvol.Company=fr.Company and minvol.SourceSystemID=fr.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MinListSidePct from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='min_list_side_pct'
+group by Company,SourceSystemID
+) minlsp
+on minvol.Company=minlsp.Company and minvol.SourceSystemID=minlsp.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MaxListSidePct from reportparameters where TabTypeID=1 and IsActive=1 and ParamName='max_list_side_pct'
+group by Company,SourceSystemID
+) maxlsp
+on minvol.Company=maxlsp.Company and minvol.SourceSystemID=maxlsp.SourceSystemID
+--Tab2
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MinVol from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='min_vol'
+group by Company,SourceSystemID
+) Tab2minvol
+on	minvol.Company=Tab2minvol.Company and minvol.SourceSystemID=Tab2minvol.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MaxVol from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='max_vol'
+group by Company,SourceSystemID
+) Tab2maxvol
+on minvol.Company=Tab2maxvol.Company and minvol.SourceSystemID=Tab2maxvol.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MinLicDate from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='min_lic_date'
+group by Company,SourceSystemID
+) Tab2minlicdate
+on minvol.Company=Tab2minlicdate.Company and minvol.SourceSystemID=Tab2minlicdate.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MaxLicDate from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='max_lic_date'
+group by Company,SourceSystemID
+) Tab2maxlicdate
+on minvol.Company=Tab2maxlicdate.Company and minvol.SourceSystemID=Tab2maxlicdate.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MinDollChng from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='min_doll_change'
+group by Company,SourceSystemID
+) Tab2mindollchange
+on minvol.Company=Tab2mindollchange.Company and minvol.SourceSystemID=Tab2mindollchange.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MaxDollChng from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='max_doll_change'
+group by Company,SourceSystemID
+) Tab2maxdollchange
+on minvol.Company=Tab2maxdollchange.Company and minvol.SourceSystemID=Tab2maxdollchange.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MinPctChng from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='min_pct_chng'
+group by Company,SourceSystemID
+) Tab2minpctchng
+on minvol.Company=Tab2minpctchng.Company and minvol.SourceSystemID=Tab2minpctchng.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MaxPctChng from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='max_pct_chng'
+group by Company,SourceSystemID
+) Tab2maxpctchng
+on minvol.Company=Tab2maxpctchng.Company and minvol.SourceSystemID=Tab2maxpctchng.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,BitValue As RemoveOwnCoFlag from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='remove_own_company'
+) Tab2roc
+on minvol.Company=Tab2roc.Company and minvol.SourceSystemID=Tab2roc.SourceSystemID
+left join
+(
+select Company,SourceSystemID,BitValue As IncludeBrandNewFlag from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='include_brand_new'
+) Tab2ibn
+on minvol.Company=Tab2ibn.Company and minvol.SourceSystemID=Tab2ibn.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MaxDistance from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='max_distance'
+group by Company,SourceSystemID
+) Tab2md
+on minvol.Company=Tab2md.Company and minvol.SourceSystemID=Tab2md.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MinAvgSalePrice from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='min_avg_sale_price'
+group by Company,SourceSystemID
+) Tab2minasp
+on minvol.Company=Tab2minasp.Company and minvol.SourceSystemID=Tab2minasp.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MaxAvgSalePrice from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='max_avg_sale_price'
+group by Company,SourceSystemID
+) Tab2maxasp
+on minvol.Company=Tab2maxasp.Company and minvol.SourceSystemID=Tab2maxasp.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MinSides from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='min_sides'
+group by Company,SourceSystemID
+) Tab2minsides
+on minvol.Company=Tab2minsides.Company and minvol.SourceSystemID=Tab2minsides.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MaxSides from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='max_sides'
+group by Company,SourceSystemID
+) Tab2maxsides
+on minvol.Company=Tab2maxsides.Company and minvol.SourceSystemID=Tab2maxsides.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(TabName) As TabName from reportparameters where TabTypeID=2 and IsActive=1 group by Company,SourceSystemID
+) Tab2tn
+on minvol.Company=Tab2tn.Company and minvol.SourceSystemID=Tab2tn.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(TextValue) As Franchise from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='franchise'
+group by Company,SourceSystemID
+) Tab2fr
+on minvol.Company=Tab2fr.Company and minvol.SourceSystemID=Tab2fr.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MinListSidePct from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='min_list_side_pct'
+group by Company,SourceSystemID
+) Tab2minlsp
+on minvol.Company=Tab2minlsp.Company and minvol.SourceSystemID=Tab2minlsp.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MaxListSidePct from reportparameters where TabTypeID=2 and IsActive=1 and ParamName='max_list_side_pct'
+group by Company,SourceSystemID
+) Tab2maxlsp
+on minvol.Company=Tab2maxlsp.Company and minvol.SourceSystemID=Tab2maxlsp.SourceSystemID
+--Alt
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MinVol from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='min_vol'
+group by Company,SourceSystemID
+) Altminvol
+on	minvol.Company=Altminvol.Company and minvol.SourceSystemID=Altminvol.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MaxVol from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='max_vol'
+group by Company,SourceSystemID
+) Altmaxvol
+on minvol.Company=Altmaxvol.Company and minvol.SourceSystemID=Altmaxvol.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MinLicDate from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='min_lic_date'
+group by Company,SourceSystemID
+) Altminlicdate
+on minvol.Company=Altminlicdate.Company and minvol.SourceSystemID=Altminlicdate.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MaxLicDate from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='max_lic_date'
+group by Company,SourceSystemID
+) Altmaxlicdate
+on minvol.Company=Altmaxlicdate.Company and minvol.SourceSystemID=Altmaxlicdate.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MinDollChng from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='min_doll_change'
+group by Company,SourceSystemID
+) Altmindollchange
+on minvol.Company=Altmindollchange.Company and minvol.SourceSystemID=Altmindollchange.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MaxDollChng from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='max_doll_change'
+group by Company,SourceSystemID
+) Altmaxdollchange
+on minvol.Company=Altmaxdollchange.Company and minvol.SourceSystemID=Altmaxdollchange.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MinPctChng from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='min_pct_chng'
+group by Company,SourceSystemID
+) Altminpctchng
+on minvol.Company=Altminpctchng.Company and minvol.SourceSystemID=Altminpctchng.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MaxPctChng from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='max_pct_chng'
+group by Company,SourceSystemID
+) Altmaxpctchng
+on minvol.Company=Altmaxpctchng.Company and minvol.SourceSystemID=Altmaxpctchng.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,BitValue As RemoveOwnCoFlag from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='remove_own_company'
+) Altroc
+on minvol.Company=Altroc.Company and minvol.SourceSystemID=Altroc.SourceSystemID
+left join
+(
+select Company,SourceSystemID,BitValue As IncludeBrandNewFlag from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='include_brand_new'
+) Altibn
+on minvol.Company=Altibn.Company and minvol.SourceSystemID=Altibn.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MaxDistance from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='max_distance'
+group by Company,SourceSystemID
+) Altmd
+on minvol.Company=Altmd.Company and minvol.SourceSystemID=Altmd.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MinAvgSalePrice from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='min_avg_sale_price'
+group by Company,SourceSystemID
+) Altminasp
+on minvol.Company=Altminasp.Company and minvol.SourceSystemID=Altminasp.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MaxAvgSalePrice from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='max_avg_sale_price'
+group by Company,SourceSystemID
+) Altmaxasp
+on minvol.Company=Altmaxasp.Company and minvol.SourceSystemID=Altmaxasp.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MinSides from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='min_sides'
+group by Company,SourceSystemID
+) Altminsides
+on minvol.Company=Altminsides.Company and minvol.SourceSystemID=Altminsides.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MaxSides from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='max_sides'
+group by Company,SourceSystemID
+) Altmaxsides
+on minvol.Company=Altmaxsides.Company and minvol.SourceSystemID=Altmaxsides.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(TabName) As TabName from reportparameters where TabTypeID=4 and IsActive=1 group by Company,SourceSystemID
+) Alttn
+on minvol.Company=Alttn.Company and minvol.SourceSystemID=Alttn.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(TextValue) As Franchise from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='franchise'
+group by Company,SourceSystemID
+) Altfr
+on minvol.Company=Altfr.Company and minvol.SourceSystemID=Altfr.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MinListSidePct from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='min_list_side_pct'
+group by Company,SourceSystemID
+) Altminlsp
+on minvol.Company=Altminlsp.Company and minvol.SourceSystemID=Altminlsp.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MaxListSidePct from reportparameters where TabTypeID=4 and IsActive=1 and ParamName='max_list_side_pct'
+group by Company,SourceSystemID
+) Altmaxlsp
+on minvol.Company=Altmaxlsp.Company and minvol.SourceSystemID=Altmaxlsp.SourceSystemID
+--Alt1
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MinVol from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='min_vol'
+group by Company,SourceSystemID
+) Alt1minvol
+on	minvol.Company=Alt1minvol.Company and minvol.SourceSystemID=Alt1minvol.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MaxVol from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='max_vol'
+group by Company,SourceSystemID
+) Alt1maxvol
+on minvol.Company=Alt1maxvol.Company and minvol.SourceSystemID=Alt1maxvol.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MinLicDate from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='min_lic_date'
+group by Company,SourceSystemID
+) Alt1minlicdate
+on minvol.Company=Alt1minlicdate.Company and minvol.SourceSystemID=Alt1minlicdate.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MaxLicDate from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='max_lic_date'
+group by Company,SourceSystemID
+) Alt1maxlicdate
+on minvol.Company=Alt1maxlicdate.Company and minvol.SourceSystemID=Alt1maxlicdate.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MinDollChng from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='min_doll_change'
+group by Company,SourceSystemID
+) Alt1mindollchange
+on minvol.Company=Alt1mindollchange.Company and minvol.SourceSystemID=Alt1mindollchange.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MaxDollChng from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='max_doll_change'
+group by Company,SourceSystemID
+) Alt1maxdollchange
+on minvol.Company=Alt1maxdollchange.Company and minvol.SourceSystemID=Alt1maxdollchange.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MinPctChng from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='min_pct_chng'
+group by Company,SourceSystemID
+) Alt1minpctchng
+on minvol.Company=Alt1minpctchng.Company and minvol.SourceSystemID=Alt1minpctchng.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MaxPctChng from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='max_pct_chng'
+group by Company,SourceSystemID
+) Alt1maxpctchng
+on minvol.Company=Alt1maxpctchng.Company and minvol.SourceSystemID=Alt1maxpctchng.SourceSystemID 
+left join
+(
+select Company,SourceSystemID,BitValue As RemoveOwnCoFlag from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='remove_own_company'
+) Alt1roc
+on minvol.Company=Alt1roc.Company and minvol.SourceSystemID=Alt1roc.SourceSystemID
+left join
+(
+select Company,SourceSystemID,BitValue As IncludeBrandNewFlag from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='include_brand_new'
+) Alt1ibn
+on minvol.Company=Alt1ibn.Company and minvol.SourceSystemID=Alt1ibn.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MaxDistance from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='max_distance'
+group by Company,SourceSystemID
+) Alt1md
+on minvol.Company=Alt1md.Company and minvol.SourceSystemID=Alt1md.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MinAvgSalePrice from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='min_avg_sale_price'
+group by Company,SourceSystemID
+) Alt1minasp
+on minvol.Company=Alt1minasp.Company and minvol.SourceSystemID=Alt1minasp.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(NumericValue) As MaxAvgSalePrice from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='max_avg_sale_price'
+group by Company,SourceSystemID
+) Alt1maxasp
+on minvol.Company=Alt1maxasp.Company and minvol.SourceSystemID=Alt1maxasp.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MinSides from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='min_sides'
+group by Company,SourceSystemID
+) Alt1minsides
+on minvol.Company=Alt1minsides.Company and minvol.SourceSystemID=Alt1minsides.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(RealValue) As MaxSides from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='max_sides'
+group by Company,SourceSystemID
+) Alt1maxsides
+on minvol.Company=Alt1maxsides.Company and minvol.SourceSystemID=Alt1maxsides.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(TabName) As TabName from reportparameters where TabTypeID=5 and IsActive=1 group by Company,SourceSystemID
+) Alt1tn
+on minvol.Company=Alt1tn.Company and minvol.SourceSystemID=Alt1tn.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(TextValue) As Franchise from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='franchise'
+group by Company,SourceSystemID
+) Alt1fr
+on minvol.Company=Alt1fr.Company and minvol.SourceSystemID=Alt1fr.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MinListSidePct from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='min_list_side_pct'
+group by Company,SourceSystemID
+) Alt1minlsp
+on minvol.Company=Alt1minlsp.Company and minvol.SourceSystemID=Alt1minlsp.SourceSystemID
+left join
+(
+select Company,SourceSystemID,max(DecimalValue) As MaxListSidePct from reportparameters where TabTypeID=5 and IsActive=1 and ParamName='max_list_side_pct'
+group by Company,SourceSystemID
+) Alt1maxlsp
+on minvol.Company=Alt1maxlsp.Company and minvol.SourceSystemID=Alt1maxlsp.SourceSystemID
+
+
+</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Company">
+          <DataField>Company</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SourceSystemID">
+          <DataField>SourceSystemID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SourceSystemName">
+          <DataField>SourceSystemName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MinVol">
+          <DataField>Tab1MinVol</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MaxVol">
+          <DataField>Tab1MaxVol</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MinLicDate">
+          <DataField>Tab1MinLicDate</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MaxLicDate">
+          <DataField>Tab1MaxLicDate</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MinDollChng">
+          <DataField>Tab1MinDollChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MaxDollChng">
+          <DataField>Tab1MaxDollChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MinPctChng">
+          <DataField>Tab1MinPctChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MaxPctChng">
+          <DataField>Tab1MaxPctChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab1RemoveOwnCoFlag">
+          <DataField>Tab1RemoveOwnCoFlag</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Tab1IncludeBrandNewFlag">
+          <DataField>Tab1IncludeBrandNewFlag</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MaxDistance">
+          <DataField>Tab1MaxDistance</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MinAvgSalePrice">
+          <DataField>Tab1MinAvgSalePrice</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MaxAvgSalePrice">
+          <DataField>Tab1MaxAvgSalePrice</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MinSides">
+          <DataField>Tab1MinSides</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MaxSides">
+          <DataField>Tab1MaxSides</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Tab1TabName">
+          <DataField>Tab1TabName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Tab1Franchise">
+          <DataField>Tab1Franchise</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MinListSidePct">
+          <DataField>Tab1MinListSidePct</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab1MaxListSidePct">
+          <DataField>Tab1MaxListSidePct</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MinVol">
+          <DataField>Tab2MinVol</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MaxVol">
+          <DataField>Tab2MaxVol</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MinLicDate">
+          <DataField>Tab2MinLicDate</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MaxLicDate">
+          <DataField>Tab2MaxLicDate</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MinDollChng">
+          <DataField>Tab2MinDollChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MaxDollChng">
+          <DataField>Tab2MaxDollChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MinPctChng">
+          <DataField>Tab2MinPctChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MaxPctChng">
+          <DataField>Tab2MaxPctChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab2RemoveOwnCoFlag">
+          <DataField>Tab2RemoveOwnCoFlag</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Tab2IncludeBrandNewFlag">
+          <DataField>Tab2IncludeBrandNewFlag</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MaxDistance">
+          <DataField>Tab2MaxDistance</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MinAvgSalePrice">
+          <DataField>Tab2MinAvgSalePrice</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MaxAvgSalePrice">
+          <DataField>Tab2MaxAvgSalePrice</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MinSides">
+          <DataField>Tab2MinSides</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MaxSides">
+          <DataField>Tab2MaxSides</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Tab2TabName">
+          <DataField>Tab2TabName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Tab2Franchise">
+          <DataField>Tab2Franchise</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MinListSidePct">
+          <DataField>Tab2MinListSidePct</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Tab2MaxListSidePct">
+          <DataField>Tab2MaxListSidePct</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AltMinVol">
+          <DataField>AltMinVol</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AltMaxVol">
+          <DataField>AltMaxVol</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AltMinLicDate">
+          <DataField>AltMinLicDate</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="AltMaxLicDate">
+          <DataField>AltMaxLicDate</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="AltMinDollChng">
+          <DataField>AltMinDollChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AltMaxDollChng">
+          <DataField>AltMaxDollChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AltMinPctChng">
+          <DataField>AltMinPctChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AltMaxPctChng">
+          <DataField>AltMaxPctChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AltRemoveOwnCoFlag">
+          <DataField>AltRemoveOwnCoFlag</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="AltIncludeBrandNewFlag">
+          <DataField>AltIncludeBrandNewFlag</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="AltMaxDistance">
+          <DataField>AltMaxDistance</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="AltMinAvgSalePrice">
+          <DataField>AltMinAvgSalePrice</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AltMaxAvgSalePrice">
+          <DataField>AltMaxAvgSalePrice</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AltMinSides">
+          <DataField>AltMinSides</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="AltMaxSides">
+          <DataField>AltMaxSides</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="AltTabName">
+          <DataField>AltTabName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AltFranchise">
+          <DataField>AltFranchise</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="AltMinListSidePct">
+          <DataField>AltMinListSidePct</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="AltMaxListSidePct">
+          <DataField>AltMaxListSidePct</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MinVol">
+          <DataField>Alt1MinVol</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MaxVol">
+          <DataField>Alt1MaxVol</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MinLicDate">
+          <DataField>Alt1MinLicDate</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MaxLicDate">
+          <DataField>Alt1MaxLicDate</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MinDollChng">
+          <DataField>Alt1MinDollChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MaxDollChng">
+          <DataField>Alt1MaxDollChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MinPctChng">
+          <DataField>Alt1MinPctChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MaxPctChng">
+          <DataField>Alt1MaxPctChng</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Alt1RemoveOwnCoFlag">
+          <DataField>Alt1RemoveOwnCoFlag</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Alt1IncludeBrandNewFlag">
+          <DataField>Alt1IncludeBrandNewFlag</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MaxDistance">
+          <DataField>Alt1MaxDistance</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MinAvgSalePrice">
+          <DataField>Alt1MinAvgSalePrice</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MaxAvgSalePrice">
+          <DataField>Alt1MaxAvgSalePrice</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MinSides">
+          <DataField>Alt1MinSides</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MaxSides">
+          <DataField>Alt1MaxSides</DataField>
+          <rd:TypeName>System.Single</rd:TypeName>
+        </Field>
+        <Field Name="Alt1TabName">
+          <DataField>Alt1TabName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Alt1Franchise">
+          <DataField>Alt1Franchise</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MinListSidePct">
+          <DataField>Alt1MinListSidePct</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Alt1MaxListSidePct">
+          <DataField>Alt1MaxListSidePct</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix4">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>4in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>4in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>4in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>4in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox23">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Company.Value + " - " + cstr(Fields!SourceSystemName.Value)</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox23</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox33">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox33</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox31">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox31</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox32">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox32</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>3.35833in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox101">
+                          <CanGrow>true</CanGrow>
+                          <CanShrink>true</CanShrink>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Tab1TabName.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <TextDecoration>Underline</TextDecoration>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>="&lt;b&gt;" + "Min Volume: " + "&lt;/b&gt;" + IIF(Fields!Tab1MinVol.Value = 1, "Not Specified", "$" + FormatNumber(Fields!Tab1MinVol.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Max Volume: " + "&lt;/b&gt;" + IIF(Fields!Tab1MaxVol.Value = 999999999, "Not Specified", "$" + FormatNumber(Fields!Tab1MaxVol.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Min Close Price: " + "&lt;/b&gt;" + IIF(Fields!Tab1MinAvgSalePrice.Value = 0, "Not Specified", "$" + FormatNumber(Fields!Tab1MinAvgSalePrice.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Max Close Price: " + "&lt;/b&gt;" + IIF(Fields!Tab1MaxAvgSalePrice.Value = 999999999, "Not Specified", "$" + FormatNumber(Fields!Tab1MaxAvgSalePrice.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Min Pct Change: " + "&lt;/b&gt;" + IIF(Fields!Tab1MinPctChng.Value = - 9999.99, "Not Specified", cstr(Fields!Tab1MinPctChng.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Max Pct Change: " + "&lt;/b&gt;" + IIF(Fields!Tab1MaxPctChng.Value = 9999.99, "Not Specified", cstr(Fields!Tab1MaxPctChng.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Min Listing Side Percentage: " + "&lt;/b&gt;" + IIF(Fields!Tab1MinListSidePct.Value = 0, "Not Specified", cstr(Fields!Tab1MinListSidePct.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Max Listing Side Percentage: " + "&lt;/b&gt;" + IIF(Fields!Tab1MaxListSidePct.Value = 9999.99, "Not Specified", cstr(Fields!Tab1MaxListSidePct.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Min Sides: " + "&lt;/b&gt;" + IIF(Fields!Tab1MinSides.Value = 0, "Not Specified", cstr(Fields!Tab1MinSides.Value)) + "&lt;br&gt;" + "&lt;b&gt;" + "Max Sides: " + "&lt;/b&gt;" + IIF(Fields!Tab1MaxSides.Value = 99999, "Not Specified", cstr(Fields!Tab1MaxSides.Value)) + "&lt;br&gt;" + "&lt;b&gt;" + "MLS Join Date: " + "&lt;/b&gt;" + IIF(Fields!Tab1MinLicDate.Value = 999 And Fields!Tab1MaxLicDate.Value = 0, "Not Specified", IIF(Fields!Tab1MinLicDate.Value &lt;&gt; 999 And Fields!Tab1MaxLicDate.Value = 0, "Within Last " + CSTR(Fields!Tab1MinLicDate.Value) + " Months", IIF(Fields!Tab1MinLicDate.Value = 999 And Fields!Tab1MaxLicDate.Value &lt;&gt; 0, "More Than " + CSTR(Fields!Tab1MaxLicDate.Value) + " Months Ago", IIF(Fields!Tab1MinLicDate.Value &lt;&gt; 999 And Fields!Tab1MaxLicDate.Value &lt;&gt; 0, "Between " + CSTR(Fields!Tab1MinLicDate.Value) + " AND " + cstr(Fields!Tab1MaxLicDate.Value) + " Months Ago", "Not Specified")))) + "&lt;br&gt;" + "&lt;b&gt;" + "Exclude Own Agents: " + "&lt;/b&gt;" + IIF(CSTR(Fields!Tab1RemoveOwnCoFlag.Value) = "False", "No", "Yes") + "&lt;br&gt;" + "&lt;b&gt;" + "Include Brand New Agents: " + "&lt;/b&gt;" + IIF(CSTR(Fields!Tab1IncludeBrandNewFlag.Value) = "False", "No", "Yes") + "&lt;br&gt;" + "&lt;b&gt;" + "Max Distance: " + "&lt;/b&gt;" + cstr(Fields!Tab1MaxDistance.Value) + " Miles" + "&lt;br&gt;" + "&lt;b&gt;" + "Franchise: " + "&lt;/b&gt;" + IIF(Fields!Tab1Franchise.Value = Nothing, "Not Specified", Fields!Tab1Franchise.Value)</Value>
+                                  <MarkupType>HTML</MarkupType>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox101</rd:DefaultName>
+                          <Visibility>
+                            <Hidden>=IIF(IsNothing(Fields!Tab1TabName.Value) OR Fields!Tab1TabName.Value="N/A",True,False)</Hidden>
+                          </Visibility>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>#ddecee</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox25">
+                          <CanGrow>true</CanGrow>
+                          <CanShrink>true</CanShrink>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Tab2TabName.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <TextDecoration>Underline</TextDecoration>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>="&lt;b&gt;" + "Min Volume: " + "&lt;/b&gt;" + IIF(Fields!Tab2MinVol.Value = 1, "Not Specified", "$" + FormatNumber(Fields!Tab2MinVol.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Max Volume: " + "&lt;/b&gt;" + IIF(Fields!Tab2MaxVol.Value = 999999999, "Not Specified", "$" + FormatNumber(Fields!Tab2MaxVol.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Min Close Price: " + "&lt;/b&gt;" + IIF(Fields!Tab2MinAvgSalePrice.Value = 0, "Not Specified", "$" + FormatNumber(Fields!Tab2MinAvgSalePrice.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Max Close Price: " + "&lt;/b&gt;" + IIF(Fields!Tab2MaxAvgSalePrice.Value = 999999999, "Not Specified", "$" + FormatNumber(Fields!Tab2MaxAvgSalePrice.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Min Pct Change: " + "&lt;/b&gt;" + IIF(Fields!Tab2MinPctChng.Value = - 9999.99, "Not Specified", cstr(Fields!Tab2MinPctChng.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Max Pct Change: " + "&lt;/b&gt;" + IIF(Fields!Tab2MaxPctChng.Value = 9999.99, "Not Specified", cstr(Fields!Tab2MaxPctChng.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Min Listing Side Percentage: " + "&lt;/b&gt;" + IIF(Fields!Tab2MinListSidePct.Value = 0, "Not Specified", cstr(Fields!Tab2MinListSidePct.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Max Listing Side Percentage: " + "&lt;/b&gt;" + IIF(Fields!Tab2MaxListSidePct.Value = 9999.99, "Not Specified", cstr(Fields!Tab2MaxListSidePct.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Min Sides: " + "&lt;/b&gt;" + IIF(Fields!Tab2MinSides.Value = 0, "Not Specified", cstr(Fields!Tab2MinSides.Value)) + "&lt;br&gt;" + "&lt;b&gt;" + "Max Sides: " + "&lt;/b&gt;" + IIF(Fields!Tab2MaxSides.Value = 99999, "Not Specified", cstr(Fields!Tab2MaxSides.Value)) + "&lt;br&gt;" + "&lt;b&gt;" + "MLS Join Date: " + "&lt;/b&gt;" + IIF(Fields!Tab2MinLicDate.Value = 999 And Fields!Tab2MaxLicDate.Value = 0, "Not Specified", IIF(Fields!Tab2MinLicDate.Value &lt;&gt; 999 And Fields!Tab2MaxLicDate.Value = 0, "Within Last " + CSTR(Fields!Tab2MinLicDate.Value) + " Months", IIF(Fields!Tab2MinLicDate.Value = 999 And Fields!Tab2MaxLicDate.Value &lt;&gt; 0, "More Than " + CSTR(Fields!Tab2MaxLicDate.Value) + " Months Ago", IIF(Fields!Tab2MinLicDate.Value &lt;&gt; 999 And Fields!Tab2MaxLicDate.Value &lt;&gt; 0, "Between " + CSTR(Fields!Tab2MinLicDate.Value) + " AND " + cstr(Fields!Tab2MaxLicDate.Value) + " Months Ago", "Not Specified")))) + "&lt;br&gt;" + "&lt;b&gt;" + "Exclude Own Agents: " + "&lt;/b&gt;" + IIF(CSTR(Fields!Tab2RemoveOwnCoFlag.Value) = "False", "No", "Yes") + "&lt;br&gt;" + "&lt;b&gt;" + "Include Brand New Agents: " + "&lt;/b&gt;" + IIF(CSTR(Fields!Tab2IncludeBrandNewFlag.Value) = "False", "No", "Yes") + "&lt;br&gt;" + "&lt;b&gt;" + "Max Distance: " + "&lt;/b&gt;" + cstr(Fields!Tab2MaxDistance.Value) + " Miles" + "&lt;br&gt;" + "&lt;b&gt;" + "Franchise: " + "&lt;/b&gt;" + IIF(Fields!Tab2Franchise.Value = Nothing, "Not Specified", Fields!Tab2Franchise.Value)</Value>
+                                  <MarkupType>HTML</MarkupType>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox25</rd:DefaultName>
+                          <Visibility>
+                            <Hidden>=IIF(IsNothing(Fields!Tab2TabName.Value) OR Fields!Tab2TabName.Value="N/A",True,False)</Hidden>
+                          </Visibility>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>#eec4c7</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox27">
+                          <CanGrow>true</CanGrow>
+                          <CanShrink>true</CanShrink>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!AltTabName.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <TextDecoration>Underline</TextDecoration>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>="&lt;b&gt;" + "Min Volume: " + "&lt;/b&gt;" + IIF(Fields!AltMinVol.Value = 1, "Not Specified", "$" + FormatNumber(Fields!AltMinVol.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Max Volume: " + "&lt;/b&gt;" + IIF(Fields!AltMaxVol.Value = 999999999, "Not Specified", "$" + FormatNumber(Fields!AltMaxVol.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Min Close Price: " + "&lt;/b&gt;" + IIF(Fields!AltMinAvgSalePrice.Value = 0, "Not Specified", "$" + FormatNumber(Fields!AltMinAvgSalePrice.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Max Close Price: " + "&lt;/b&gt;" + IIF(Fields!AltMaxAvgSalePrice.Value = 999999999, "Not Specified", "$" + FormatNumber(Fields!AltMaxAvgSalePrice.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Min Pct Change: " + "&lt;/b&gt;" + IIF(Fields!AltMinPctChng.Value = - 9999.99, "Not Specified", cstr(Fields!AltMinPctChng.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Max Pct Change: " + "&lt;/b&gt;" + IIF(Fields!AltMaxPctChng.Value = 9999.99, "Not Specified", cstr(Fields!AltMaxPctChng.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Min Listing Side Percentage: " + "&lt;/b&gt;" + IIF(Fields!AltMinListSidePct.Value = 0, "Not Specified", cstr(Fields!AltMinListSidePct.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Max Listing Side Percentage: " + "&lt;/b&gt;" + IIF(Fields!AltMaxListSidePct.Value = 9999.99, "Not Specified", cstr(Fields!AltMaxListSidePct.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Min Sides: " + "&lt;/b&gt;" + IIF(Fields!AltMinSides.Value = 0, "Not Specified", cstr(Fields!AltMinSides.Value)) + "&lt;br&gt;" + "&lt;b&gt;" + "Max Sides: " + "&lt;/b&gt;" + IIF(Fields!AltMaxSides.Value = 99999, "Not Specified", cstr(Fields!AltMaxSides.Value)) + "&lt;br&gt;" + "&lt;b&gt;" + "MLS Join Date: " + "&lt;/b&gt;" + IIF(Fields!AltMinLicDate.Value = 999 And Fields!AltMaxLicDate.Value = 0, "Not Specified", IIF(Fields!AltMinLicDate.Value &lt;&gt; 999 And Fields!AltMaxLicDate.Value = 0, "Within Last " + CSTR(Fields!AltMinLicDate.Value) + " Months", IIF(Fields!AltMinLicDate.Value = 999 And Fields!AltMaxLicDate.Value &lt;&gt; 0, "More Than " + CSTR(Fields!AltMaxLicDate.Value) + " Months Ago", IIF(Fields!AltMinLicDate.Value &lt;&gt; 999 And Fields!AltMaxLicDate.Value &lt;&gt; 0, "Between " + CSTR(Fields!AltMinLicDate.Value) + " AND " + cstr(Fields!AltMaxLicDate.Value) + " Months Ago", "Not Specified")))) + "&lt;br&gt;" + "&lt;b&gt;" + "Exclude Own Agents: " + "&lt;/b&gt;" + IIF(CSTR(Fields!AltRemoveOwnCoFlag.Value) = "False", "No", "Yes") + "&lt;br&gt;" + "&lt;b&gt;" + "Include Brand New Agents: " + "&lt;/b&gt;" + IIF(CSTR(Fields!AltIncludeBrandNewFlag.Value) = "False", "No", "Yes") + "&lt;br&gt;" + "&lt;b&gt;" + "Max Distance: " + "&lt;/b&gt;" + cstr(Fields!AltMaxDistance.Value) + " Miles" + "&lt;br&gt;" + "&lt;b&gt;" + "Franchise: " + "&lt;/b&gt;" + IIF(Fields!AltFranchise.Value = Nothing, "Not Specified", Fields!AltFranchise.Value)</Value>
+                                  <MarkupType>HTML</MarkupType>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox27</rd:DefaultName>
+                          <Visibility>
+                            <Hidden>=IIF(IsNothing(Fields!AltTabName.Value) OR Fields!AltTabName.Value="N/A",True,False)</Hidden>
+                          </Visibility>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>#eeebc1</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox29">
+                          <CanGrow>true</CanGrow>
+                          <CanShrink>true</CanShrink>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Alt1TabName.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontSize>14pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <TextDecoration>Underline</TextDecoration>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>="&lt;b&gt;" + "Min Volume: " + "&lt;/b&gt;" + IIF(Fields!Alt1MinVol.Value = 1, "Not Specified", "$" + FormatNumber(Fields!Alt1MinVol.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Max Volume: " + "&lt;/b&gt;" + IIF(Fields!Alt1MaxVol.Value = 999999999, "Not Specified", "$" + FormatNumber(Fields!Alt1MaxVol.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Min Close Price: " + "&lt;/b&gt;" + IIF(Fields!Alt1MinAvgSalePrice.Value = 0, "Not Specified", "$" + FormatNumber(Fields!Alt1MinAvgSalePrice.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Max Close Price: " + "&lt;/b&gt;" + IIF(Fields!Alt1MaxAvgSalePrice.Value = 999999999, "Not Specified", "$" + FormatNumber(Fields!Alt1MaxAvgSalePrice.Value, 0)) + "&lt;br&gt;" + "&lt;b&gt;" + "Min Pct Change: " + "&lt;/b&gt;" + IIF(Fields!Alt1MinPctChng.Value = - 9999.99, "Not Specified", cstr(Fields!Alt1MinPctChng.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Max Pct Change: " + "&lt;/b&gt;" + IIF(Fields!Alt1MaxPctChng.Value = 9999.99, "Not Specified", cstr(Fields!Alt1MaxPctChng.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Min Listing Side Percentage: " + "&lt;/b&gt;" + IIF(Fields!Alt1MinListSidePct.Value = 0, "Not Specified", cstr(Fields!Alt1MinListSidePct.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Max Listing Side Percentage: " + "&lt;/b&gt;" + IIF(Fields!Alt1MaxListSidePct.Value = 9999.99, "Not Specified", cstr(Fields!Alt1MaxListSidePct.Value * 100) + "%") + "&lt;br&gt;" + "&lt;b&gt;" + "Min Sides: " + "&lt;/b&gt;" + IIF(Fields!Alt1MinSides.Value = 0, "Not Specified", cstr(Fields!Alt1MinSides.Value)) + "&lt;br&gt;" + "&lt;b&gt;" + "Max Sides: " + "&lt;/b&gt;" + IIF(Fields!Alt1MaxSides.Value = 99999, "Not Specified", cstr(Fields!Alt1MaxSides.Value)) + "&lt;br&gt;" + "&lt;b&gt;" + "MLS Join Date: " + "&lt;/b&gt;" + IIF(Fields!Alt1MinLicDate.Value = 999 And Fields!Alt1MaxLicDate.Value = 0, "Not Specified", IIF(Fields!Alt1MinLicDate.Value &lt;&gt; 999 And Fields!Alt1MaxLicDate.Value = 0, "Within Last " + CSTR(Fields!Alt1MinLicDate.Value) + " Months", IIF(Fields!Alt1MinLicDate.Value = 999 And Fields!Alt1MaxLicDate.Value &lt;&gt; 0, "More Than " + CSTR(Fields!Alt1MaxLicDate.Value) + " Months Ago", IIF(Fields!Alt1MinLicDate.Value &lt;&gt; 999 And Fields!Alt1MaxLicDate.Value &lt;&gt; 0, "Between " + CSTR(Fields!Alt1MinLicDate.Value) + " AND " + cstr(Fields!Alt1MaxLicDate.Value) + " Months Ago", "Not Specified")))) + "&lt;br&gt;" + "&lt;b&gt;" + "Exclude Own Agents: " + "&lt;/b&gt;" + IIF(CSTR(Fields!Alt1RemoveOwnCoFlag.Value) = "False", "No", "Yes") + "&lt;br&gt;" + "&lt;b&gt;" + "Include Brand New Agents: " + "&lt;/b&gt;" + IIF(CSTR(Fields!Alt1IncludeBrandNewFlag.Value) = "False", "No", "Yes") + "&lt;br&gt;" + "&lt;b&gt;" + "Max Distance: " + "&lt;/b&gt;" + cstr(Fields!Alt1MaxDistance.Value) + " Miles" + "&lt;br&gt;" + "&lt;b&gt;" + "Franchise: " + "&lt;/b&gt;" + IIF(Fields!Alt1Franchise.Value = Nothing, "Not Specified", Fields!Alt1Franchise.Value)</Value>
+                                  <MarkupType>HTML</MarkupType>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                    <FontWeight>Normal</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox29</rd:DefaultName>
+                          <Visibility>
+                            <Hidden>=IIF(IsNothing(Fields!Alt1TabName.Value) OR Fields!Alt1TabName.Value="N/A",True,False)</Hidden>
+                          </Visibility>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>LightGreen</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Details">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Company.Value</GroupExpression>
+                      <GroupExpression>=Fields!SourceSystemID.Value</GroupExpression>
+                    </GroupExpressions>
+                    <PageBreak>
+                      <BreakLocation>Between</BreakLocation>
+                    </PageBreak>
+                    <PageName>=Replace(Replace(Replace(Replace(Fields!Company.Value,"Century 21","C21"),"Coldwell Banker","CB"),"Douglas Elliman","DE"),"CB The Real Estate Group","CBRG")
++ " - " + Fields!SourceSystemName.Value</PageName>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Company.Value</Value>
+                    </SortExpression>
+                    <SortExpression>
+                      <Value>=Fields!SourceSystemName.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember />
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Tab1Params</DataSetName>
+            <Height>3.60833in</Height>
+            <Width>16in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>3.60833in</Height>
+        <Style />
+      </Body>
+      <Width>16in</Width>
+      <Page>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>21</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <EmbeddedImages>
+    <EmbeddedImage Name="RelitixLogo">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0f875a30-74b4-41d3-9c71-a81de5bfeea4</rd:ReportID>
+</Report>

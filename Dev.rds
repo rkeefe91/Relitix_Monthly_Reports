@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Dev">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=52.165.37.193;Initial Catalog=Relitix_Dev</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>99ee1021-b579-4969-9655-c1a8a2031be8</DataSourceID>
+</RptDataSource>
