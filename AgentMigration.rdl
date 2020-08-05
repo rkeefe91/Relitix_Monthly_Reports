@@ -188,8 +188,8 @@ order by System_Name</CommandText>
 			,coalesce(p.sides_last_12,0) as total_closed_sides
 			,p.pct_change
 			,c.SourceSystemID
-			,c.OfficeName as new_employer
-			,c.previous_office as old_employer
+			,coalesce(c.Company,c.OfficeName) as new_employer
+			,coalesce(c.previous_company,c.previous_office) as old_employer
 			,c.first_trans
 		from relitix.dbo.temp_work_r_office_change c
 			join relitix.dbo.monthly_push_master p
@@ -228,7 +228,8 @@ cte_out as (
 		group by old_employer, sourcesystemid
 			),
 cte_total as (
-		select p.OfficeName as broker
+		select 
+		iif(p.Company='Others',p.Officename,p.Company) As broker
 			,p.sourcesystemid
 			,count(*) as total_agents
 		from relitix.dbo.monthly_push_master p
@@ -236,7 +237,7 @@ cte_total as (
 				on p.ID = a.memberkey
 					and p.SourceSystemID = a.sourcesystemid
 		where ISNULL(a.memberstatus,'0') &lt;&gt; 'Inactive'
-		group by p.OfficeName, p.Sourcesystemid
+		group by iif(p.Company='Others',p.Officename,p.Company), p.Sourcesystemid
 			),
 cte_comb as (
 
@@ -424,7 +425,7 @@ order by cte_total.broker;</CommandText>
                                 <TextRun>
                                   <Label>ReportCriteria</Label>
                                   <Value>="Agents Doing First Transaction at New Office 2020" + vbcrlf +
-"Production Data for Period May 2019 - April 2020"</Value>
+"Production Data for Period July 2019 - June 2020"</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -1808,7 +1809,7 @@ order by cte_total.broker;</CommandText>
                                 <TextRun>
                                   <Label>ReportCriteria</Label>
                                   <Value>="Agents Doing First Transaction at New Office 2020" + vbcrlf +
-"Production Data for Period May 2019 - April 2020"</Value>
+"Production Data for Period July 2019 - June 2020"</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>

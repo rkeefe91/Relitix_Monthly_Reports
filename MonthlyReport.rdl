@@ -6250,8 +6250,10 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=format(Fields!ID5_yr_closed_pct.Value,"#0.000")</Value>
-                                  <Style />
+                                  <Value>=Fields!ID5_yr_closed_pct.Value</Value>
+                                  <Style>
+                                    <Format>0.000;(0.000)</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -6415,7 +6417,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                 <Value>=Fields!Agent_Name.Value</Value>
               </SortExpression>
             </SortExpressions>
-            <Top>23.69444in</Top>
+            <Top>23.48611in</Top>
             <Height>1.85833in</Height>
             <Width>67in</Width>
             <Style>
@@ -10132,9 +10134,9 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=format(Fields!ID5_yr_closed_pct.Value,"#0.000")</Value>
+                                  <Value>=Fields!ID5_yr_closed_pct.Value</Value>
                                   <Style>
-                                    <Format>0.00%</Format>
+                                    <Format>0.000;(0.000)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -10300,7 +10302,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                 <Value>=Fields!Agent_Name.Value</Value>
               </SortExpression>
             </SortExpressions>
-            <Top>25.58539in</Top>
+            <Top>25.37706in</Top>
             <Height>1.85833in</Height>
             <Width>67in</Width>
             <ZIndex>1</ZIndex>
@@ -13129,9 +13131,9 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=format(Fields!ID5_yr_closed_pct.Value,"#0.000")</Value>
+                                  <Value>=Fields!ID5_yr_closed_pct.Value</Value>
                                   <Style>
-                                    <Format>0.00%</Format>
+                                    <Format>0.000;(0.000)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -13150,6 +13152,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -13252,7 +13255,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
               <BreakLocation>Start</BreakLocation>
             </PageBreak>
             <PageName>="Retention Report"</PageName>
-            <Top>35.02394in</Top>
+            <Top>34.81561in</Top>
             <Height>1.85833in</Height>
             <Width>47in</Width>
             <ZIndex>2</ZIndex>
@@ -14339,7 +14342,7 @@ IIF(Fields!switch_color.Value="Yellow","Yellow","White")))</BackgroundColor>
               <BreakLocation>Start</BreakLocation>
             </PageBreak>
             <PageName>="Coaching Report"</PageName>
-            <Top>36.93645in</Top>
+            <Top>36.72812in</Top>
             <Height>1.85833in</Height>
             <Width>21in</Width>
             <ZIndex>3</ZIndex>
@@ -18057,9 +18060,9 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=format(Fields!ID5_yr_closed_pct.Value,"#0.000")</Value>
+                                  <Value>=Fields!ID5_yr_closed_pct.Value</Value>
                                   <Style>
-                                    <Format>0.00%</Format>
+                                    <Format>0.000;(0.000)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -18225,7 +18228,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                 <Value>=Fields!Agent_Name.Value</Value>
               </SortExpression>
             </SortExpressions>
-            <Top>27.46248in</Top>
+            <Top>27.25415in</Top>
             <Height>1.85833in</Height>
             <Width>67in</Width>
             <ZIndex>4</ZIndex>
@@ -18247,7 +18250,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>4.59778in</Height>
+                  <Height>4.53611in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -18669,8 +18672,8 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Tab1</DataSetName>
-            <Top>19.09666in</Top>
-            <Height>4.59778in</Height>
+            <Top>18.9555in</Top>
+            <Height>4.53611in</Height>
             <Width>20.16667in</Width>
             <ZIndex>5</ZIndex>
             <Style>
@@ -18688,7 +18691,7 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>19.055in</Height>
+                  <Height>18.955in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -21159,7 +21162,6 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                                               <PaddingBottom>2pt</PaddingBottom>
                                             </Style>
                                           </Textbox>
-                                          <rd:Selected>true</rd:Selected>
                                         </CellContents>
                                       </TablixCell>
                                       <TablixCell>
@@ -23715,7 +23717,7 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>Long Island (MLSLI)</Value>
+                                                    <Value>New York (OneKey)</Value>
                                                     <Style>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
@@ -23784,7 +23786,7 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>North Carolina (Canopy)</Value>
                                                     <Style>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
@@ -23816,14 +23818,14 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox371">
+                                          <Textbox Name="Textbox500">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value EvaluationMode="Constant">Historical record current from 1/1/2011</Value>
                                                     <Style>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
@@ -23832,18 +23834,12 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox371</rd:DefaultName>
+                                            <rd:DefaultName>Textbox224</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
                                                 <Style>Solid</Style>
                                               </Border>
-                                              <BottomBorder>
-                                                <Style>None</Style>
-                                              </BottomBorder>
-                                              <LeftBorder>
-                                                <Style>None</Style>
-                                              </LeftBorder>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                               <PaddingTop>2pt</PaddingTop>
@@ -23931,7 +23927,7 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>North Carolina (Triangle)</Value>
                                                     <Style>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
@@ -23966,14 +23962,14 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox372">
+                                          <Textbox Name="Textbox371">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value EvaluationMode="Constant">Historical record current from 1/1/2011</Value>
                                                     <Style>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
@@ -23982,21 +23978,12 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox372</rd:DefaultName>
+                                            <rd:DefaultName>Textbox224</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
                                                 <Style>Solid</Style>
                                               </Border>
-                                              <TopBorder>
-                                                <Style>None</Style>
-                                              </TopBorder>
-                                              <BottomBorder>
-                                                <Style>None</Style>
-                                              </BottomBorder>
-                                              <LeftBorder>
-                                                <Style>None</Style>
-                                              </LeftBorder>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                               <PaddingTop>2pt</PaddingTop>
@@ -24084,7 +24071,7 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>North Carolina (Triad)</Value>
                                                     <Style>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
@@ -24119,14 +24106,14 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox373">
+                                          <Textbox Name="Textbox372">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value EvaluationMode="Constant">Historical record current from 1/1/2011</Value>
                                                     <Style>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
@@ -24135,21 +24122,12 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox373</rd:DefaultName>
+                                            <rd:DefaultName>Textbox224</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
                                                 <Style>Solid</Style>
                                               </Border>
-                                              <TopBorder>
-                                                <Style>None</Style>
-                                              </TopBorder>
-                                              <BottomBorder>
-                                                <Style>None</Style>
-                                              </BottomBorder>
-                                              <LeftBorder>
-                                                <Style>None</Style>
-                                              </LeftBorder>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                               <PaddingTop>2pt</PaddingTop>
@@ -24237,7 +24215,7 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value>Prescott (PAAR)</Value>
                                                     <Style>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
@@ -24269,14 +24247,14 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                                       </TablixCell>
                                       <TablixCell>
                                         <CellContents>
-                                          <Textbox Name="Textbox374">
+                                          <Textbox Name="Textbox373">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value />
+                                                    <Value EvaluationMode="Constant">Historical record current from 1/1/2011</Value>
                                                     <Style>
                                                       <FontSize>8pt</FontSize>
                                                     </Style>
@@ -24285,18 +24263,12 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                                                 <Style />
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox374</rd:DefaultName>
+                                            <rd:DefaultName>Textbox224</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
                                                 <Style>Solid</Style>
                                               </Border>
-                                              <TopBorder>
-                                                <Style>None</Style>
-                                              </TopBorder>
-                                              <LeftBorder>
-                                                <Style>None</Style>
-                                              </LeftBorder>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                               <PaddingTop>2pt</PaddingTop>
@@ -24370,7 +24342,7 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>Tab1</DataSetName>
-            <Height>19.055in</Height>
+            <Height>18.955in</Height>
             <Width>12.04167in</Width>
             <ZIndex>6</ZIndex>
             <Style>
@@ -28087,9 +28059,9 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=format(Fields!ID5_yr_closed_pct.Value,"#0.000")</Value>
+                                  <Value>=Fields!ID5_yr_closed_pct.Value</Value>
                                   <Style>
-                                    <Format>0.00%</Format>
+                                    <Format>0.000;(0.000)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -28255,7 +28227,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                 <Value>=Fields!Agent_Name.Value</Value>
               </SortExpression>
             </SortExpressions>
-            <Top>29.32081in</Top>
+            <Top>29.11248in</Top>
             <Height>1.85833in</Height>
             <Width>67in</Width>
             <ZIndex>7</ZIndex>
@@ -31429,9 +31401,9 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=format(Fields!ID5_yr_closed_pct.Value,"#0.000")</Value>
+                                  <Value>=Fields!ID5_yr_closed_pct.Value</Value>
                                   <Style>
-                                    <Format>0.00%</Format>
+                                    <Format>0.000;(0.000)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -31565,7 +31537,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                 <Value>=Fields!Agent_Name.Value</Value>
               </SortExpression>
             </SortExpressions>
-            <Top>33.1in</Top>
+            <Top>32.89167in</Top>
             <Height>1.85833in</Height>
             <Width>55in</Width>
             <ZIndex>8</ZIndex>
@@ -35286,9 +35258,9 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=format(Fields!ID5_yr_closed_pct.Value,"#0.000")</Value>
+                                  <Value>=Fields!ID5_yr_closed_pct.Value</Value>
                                   <Style>
-                                    <Format>0.00%</Format>
+                                    <Format>0.000;(0.000)</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -35454,7 +35426,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                 <Value>=Fields!Agent_Name.Value</Value>
               </SortExpression>
             </SortExpressions>
-            <Top>31.20833in</Top>
+            <Top>31in</Top>
             <Height>1.85833in</Height>
             <Width>67in</Width>
             <ZIndex>9</ZIndex>
@@ -35468,7 +35440,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>38.79478in</Height>
+        <Height>38.63645in</Height>
         <Style />
       </Body>
       <Width>67in</Width>
