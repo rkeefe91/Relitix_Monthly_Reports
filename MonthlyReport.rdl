@@ -256,6 +256,10 @@
           <DataField>first_trans_date_current_office</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
+        <Field Name="OfficeKey">
+          <DataField>OfficeKey</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="Company">
@@ -535,6 +539,10 @@
         <Field Name="first_trans_date_current_office">
           <DataField>first_trans_date_current_office</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="OfficeKey">
+          <DataField>OfficeKey</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -995,6 +1003,10 @@ where rp.Company=@company
           <DataField>first_trans_date_current_office</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
+        <Field Name="OfficeKey">
+          <DataField>OfficeKey</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="Retention_TableName">
@@ -1362,6 +1374,10 @@ where rp.Company=@company
         </Field>
         <Field Name="first_trans_date_current_office">
           <DataField>first_trans_date_current_office</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
+        <Field Name="OfficeKey">
+          <DataField>OfficeKey</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
       </Fields>
@@ -1769,6 +1785,10 @@ ELSE SELECT NULL AS TableName</CommandText>
           <DataField>first_trans_date_current_office</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
+        <Field Name="OfficeKey">
+          <DataField>OfficeKey</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
       </Fields>
     </DataSet>
     <DataSet Name="Alt1_TableName">
@@ -2128,6 +2148,10 @@ ELSE SELECT NULL AS TableName</CommandText>
         <Field Name="first_trans_date_current_office">
           <DataField>first_trans_date_current_office</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="OfficeKey">
+          <DataField>OfficeKey</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>
@@ -2533,6 +2557,10 @@ ELSE SELECT NULL AS TableName</CommandText>
           <DataField>first_trans_date_current_office</DataField>
           <rd:UserDefined>true</rd:UserDefined>
         </Field>
+        <Field Name="OfficeKey">
+          <DataField>OfficeKey</DataField>
+          <rd:UserDefined>true</rd:UserDefined>
+        </Field>
       </Fields>
     </DataSet>
   </DataSets>
@@ -2623,6 +2651,9 @@ ELSE SELECT NULL AS TableName</CommandText>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2in</Width>
@@ -2803,9 +2834,10 @@ ELSE SELECT NULL AS TableName</CommandText>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>47</ColSpan>
+                        <ColSpan>48</ColSpan>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell />
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
@@ -3762,6 +3794,40 @@ ELSE SELECT NULL AS TableName</CommandText>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox502">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>MLS Office ID</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox502</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -5501,6 +5567,36 @@ ELSE SELECT NULL AS TableName</CommandText>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="OfficeKey">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!OfficeKey.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>OfficeKey</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="CurrentOfficeAddress">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -6366,6 +6462,11 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                   </Visibility>
                 </TablixMember>
                 <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=IIF(Parameters!company.Value="Dream Town Realty",False,True)</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -6419,7 +6520,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
             </SortExpressions>
             <Top>23.48611in</Top>
             <Height>1.85833in</Height>
-            <Width>67in</Width>
+            <Width>68in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -6509,6 +6610,9 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2in</Width>
@@ -6689,9 +6793,10 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>47</ColSpan>
+                        <ColSpan>48</ColSpan>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell />
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
@@ -7648,6 +7753,40 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox576">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>MLS Office ID</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox502</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -9386,6 +9525,36 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="OfficeKey2">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!OfficeKey.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>OfficeKey</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="CurrentOfficeAddress1">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -10248,6 +10417,11 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                   </Visibility>
                 </TablixMember>
                 <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=IIF(Parameters!company.Value="Dream Town Realty",False,True)</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -10304,7 +10478,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
             </SortExpressions>
             <Top>25.37706in</Top>
             <Height>1.85833in</Height>
-            <Width>67in</Width>
+            <Width>68in</Width>
             <ZIndex>1</ZIndex>
             <Visibility>
               <Hidden>=IIF(IsNothing(Parameters!Tab2TabName.Value) OR Parameters!Tab2TabName.Value="N/A",True,False)</Hidden>
@@ -10380,6 +10554,9 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2in</Width>
@@ -10539,9 +10716,10 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>34</ColSpan>
+                        <ColSpan>35</ColSpan>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell />
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
@@ -11281,6 +11459,40 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox579">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>MLS Office ID</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox502</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -12599,6 +12811,36 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="OfficeKey7">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!OfficeKey.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>OfficeKey</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="CurrentOfficeAddress4">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -13152,7 +13394,6 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -13216,6 +13457,11 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=IIF(Parameters!company.Value="Dream Town Realty",False,True)</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -13257,7 +13503,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
             <PageName>="Retention Report"</PageName>
             <Top>34.81561in</Top>
             <Height>1.85833in</Height>
-            <Width>47in</Width>
+            <Width>48in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -14437,6 +14683,9 @@ IIF(Fields!switch_color.Value="Yellow","Yellow","White")))</BackgroundColor>
                   <Width>2in</Width>
                 </TablixColumn>
                 <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
                   <Width>2in</Width>
                 </TablixColumn>
                 <TablixColumn>
@@ -14615,9 +14864,10 @@ IIF(Fields!switch_color.Value="Yellow","Yellow","White")))</BackgroundColor>
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>47</ColSpan>
+                        <ColSpan>48</ColSpan>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell />
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
@@ -15574,6 +15824,40 @@ IIF(Fields!switch_color.Value="Yellow","Yellow","White")))</BackgroundColor>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox574">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>MLS Office ID</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox502</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -17312,6 +17596,36 @@ IIF(Fields!switch_color.Value="Yellow","Yellow","White")))</BackgroundColor>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="OfficeKey3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!OfficeKey.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>OfficeKey</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="CurrentOfficeAddress2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -18174,6 +18488,11 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                   </Visibility>
                 </TablixMember>
                 <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=IIF(Parameters!company.Value="Dream Town Realty",False,True)</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -18230,7 +18549,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
             </SortExpressions>
             <Top>27.25415in</Top>
             <Height>1.85833in</Height>
-            <Width>67in</Width>
+            <Width>68in</Width>
             <ZIndex>4</ZIndex>
             <Visibility>
               <Hidden>=IIF(IsNothing(Parameters!AltTabName.Value) OR Parameters!AltTabName.Value="N/A",True,False)</Hidden>
@@ -24436,6 +24755,9 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                   <Width>2in</Width>
                 </TablixColumn>
                 <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
                   <Width>2in</Width>
                 </TablixColumn>
                 <TablixColumn>
@@ -24614,9 +24936,10 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>47</ColSpan>
+                        <ColSpan>48</ColSpan>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell />
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
@@ -25573,6 +25896,40 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox575">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>MLS Office ID</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox502</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -27311,6 +27668,36 @@ IIF(Parameters!Alt1MinLicDate.Value&lt;&gt;999 AND Parameters!Alt1MaxLicDate.Val
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="OfficeKey4">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!OfficeKey.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>OfficeKey</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="CurrentOfficeAddress3">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -28173,6 +28560,11 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                   </Visibility>
                 </TablixMember>
                 <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=IIF(Parameters!company.Value="Dream Town Realty",False,True)</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -28229,7 +28621,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
             </SortExpressions>
             <Top>29.11248in</Top>
             <Height>1.85833in</Height>
-            <Width>67in</Width>
+            <Width>68in</Width>
             <ZIndex>7</ZIndex>
             <Visibility>
               <Hidden>=IIF(IsNothing(Parameters!Alt1TabName.Value) OR Parameters!Alt1TabName.Value="N/A",True,False)</Hidden>
@@ -28307,7 +28699,13 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                   <Width>2in</Width>
                 </TablixColumn>
                 <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
                   <Width>2in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1in</Width>
@@ -28479,9 +28877,11 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>39</ColSpan>
+                        <ColSpan>41</ColSpan>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
@@ -29242,6 +29642,40 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Textbox578">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>MLS Office ID</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox502</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Textbox307">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -29294,6 +29728,40 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox13</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox374">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value EvaluationMode="Constant">First Transaction at Current Office</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox374</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -30714,6 +31182,36 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="OfficeKey6">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!OfficeKey.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>OfficeKey</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="Current_Office_City2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -30759,6 +31257,40 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Current_Office_Zip</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="first_trans_date_current_office1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=IIf(IsNothing(Fields!first_trans_date_current_office.Value), "", CDATE(Fields!first_trans_date_current_office.Value))</Value>
+                                  <Style>
+                                    <Format>M/d/yy</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>first_trans_date_current_office1</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -31485,6 +32017,12 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=IIF(Parameters!company.Value="Dream Town Realty",False,True)</Hidden>
+                  </Visibility>
+                </TablixMember>
+                <TablixMember />
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -31539,7 +32077,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
             </SortExpressions>
             <Top>32.89167in</Top>
             <Height>1.85833in</Height>
-            <Width>55in</Width>
+            <Width>57in</Width>
             <ZIndex>8</ZIndex>
             <Visibility>
               <Hidden>=IIF(First(Fields!Agent_Name.Value, "Alumni") Is Nothing, True, False)</Hidden>
@@ -31633,6 +32171,9 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2in</Width>
@@ -31813,9 +32354,10 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <ColSpan>47</ColSpan>
+                        <ColSpan>48</ColSpan>
                       </CellContents>
                     </TablixCell>
+                    <TablixCell />
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
@@ -32772,6 +33314,40 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox9</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>CornflowerBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox577">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>MLS Office ID</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Color>White</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox502</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -34510,6 +35086,36 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="OfficeKey5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!OfficeKey.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>OfficeKey</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="CurrentOfficeAddress5">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -35372,6 +35978,11 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
                   </Visibility>
                 </TablixMember>
                 <TablixMember />
+                <TablixMember>
+                  <Visibility>
+                    <Hidden>=IIF(Parameters!company.Value="Dream Town Realty",False,True)</Hidden>
+                  </Visibility>
+                </TablixMember>
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
@@ -35428,7 +36039,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
             </SortExpressions>
             <Top>31in</Top>
             <Height>1.85833in</Height>
-            <Width>67in</Width>
+            <Width>68in</Width>
             <ZIndex>9</ZIndex>
             <Visibility>
               <Hidden>=IIF(IsNothing(Parameters!Alt2TabName.Value) OR Parameters!Alt2TabName.Value="N/A",True,False)</Hidden>
@@ -35443,7 +36054,7 @@ IIF(Fields!Switch_Pattern_Match.Value="Yellow","Yellow","White")))</BackgroundCo
         <Height>38.63645in</Height>
         <Style />
       </Body>
-      <Width>67in</Width>
+      <Width>68in</Width>
       <Page>
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>
